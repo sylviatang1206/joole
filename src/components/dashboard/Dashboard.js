@@ -14,10 +14,10 @@ export class Dashboard extends Component {
         const { fans } = this.props;
 
         return (
-            <div className="dashboard container">
+            <div className="dashboard">
                 <div className="row">
                     <div className="col s12 m2">
-                    <Sorting />
+                    <Sorting fans={fans}/>
                     </div>
                     <div className="col s12 m10">
                         <span className="indigo-text text-darken-3">Mechanical > </span>

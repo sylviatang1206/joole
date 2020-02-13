@@ -73,12 +73,23 @@ export const authCheckState = () => {
         if (!token) {
             dispatch(logout());
         }
+        else{
+            dispatch(loggedin());
+        }
+    }
+}
+export const loggedin = () => {
+    return{
+        type: actionTypes.AUTH_ALREADY,
+        token: localStorage.getItem('token'),
+        username: localStorage.getItem('username'),
+        imageurl: localStorage.getItem('imageurl')
     }
 }
 
-export const loginUser = userObj => {
-        return {
-            type: 'LOGIN_USER',
-            token:userObj
-        }
-    }
+// export const loginUser = userObj => {
+//         return {
+//             type: 'LOGIN_USER',
+//             token:userObj
+//         }
+//     }

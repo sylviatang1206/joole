@@ -2,16 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom';
+import * as actions from '../../store/actions/authActions'
 
 
 class SignUp extends Component {
-
-    // onSubmit = user =>{
-    // axios.post('http://localhost:8080/signup',user)
-    // .then(res => { console.log(res) })
-    // .catch(err => {alert("invalid")})
-    // }
-    
+    componentDidMount() {
+        this.props.loggedin()
+    }
     state = {
             username: '',
             password: '',
@@ -37,10 +34,13 @@ class SignUp extends Component {
 
         })
         .catch(err => {alert("invalid")})
-        //this.props.userPostFetch(this.state);
-        //console.log(this.state);
+        
     }
     render() {
+        console.log(this.props);
+        if(this.props.token){
+            this.props.history.push("/");
+        }
         return (
             <div className="container">
                 <form onSubmit={this.handleSubmit} className="white">
@@ -68,6 +68,17 @@ class SignUp extends Component {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+    loggedin: () => dispatch(actions.loggedin())
+}
+}
+const mapStateToProps = state => {
+    return {
+        token: state.auth.token,
+    }
 
+}
 
-export default SignUp
+export default connect(mapStateToProps,mapDispatchToProps)(SignUp)
+

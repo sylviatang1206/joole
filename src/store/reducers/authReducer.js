@@ -1,5 +1,6 @@
 import * as actionTypes from '../actions/authTypes'
 import { updateObject } from '../utilities'
+import { loggedin } from '../actions/authActions';
 
 const initialState = {
     token: null,
@@ -8,7 +9,8 @@ const initialState = {
     error: null,
     loading: false,
     authRedirectPath: '/',
-    signup: false
+    signup: false,
+
 }
 
 const authStart = ( state, action ) => {
@@ -52,6 +54,7 @@ const authReducer = ( state = initialState, action ) => {
         case actionTypes.AUTH_FAIL: return authFail(state, action);
         case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
         case actionTypes.SET_AUTH_REDIRECT_PATH: return setAuthRedirectPath(state,action);
+        case actionTypes.AUTH_ALREADY: return authSuccess(state, action);
         default:
             return state;
     }

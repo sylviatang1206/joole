@@ -5,6 +5,8 @@ import Dashboard from './components/dashboard/Dashboard'
 import FanDetails from './components/projects/FanDetails'
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
+import 'materialize-css/dist/css/materialize.min.css';
+import 'react-rangeslider/lib/index.css'
 
 export class App extends Component {
   render() {

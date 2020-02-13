@@ -4,7 +4,13 @@ import * as actions from '../../store/actions/authActions'
 
 import axios from 'axios';
 
+
 class SignIn extends Component {
+
+    componentDidMount() {
+        this.props.loggedin()
+
+    }
     state = {
         username: "",
         password: ""
@@ -23,6 +29,9 @@ class SignIn extends Component {
     
     render() {
         //console.log(this.props);
+        if(this.props.token){
+            this.props.history.push("/");
+        }
         return (
             <div className="container">
                 <form onSubmit={this.handleSubmit} className="white">
@@ -48,21 +57,19 @@ class SignIn extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-    userLogin: userInfo => dispatch(actions.userLoginAction(userInfo))
+    userLogin: userInfo => dispatch(actions.userLoginAction(userInfo)),
+    loggedin: () => dispatch(actions.loggedin())
+
 }
 }
 
 const mapStateToProps = state => {
     return {
         token: state.auth.token,
-
     }
 
 }
-// const onSubmit = user =>{
-//     axios.post('http://localhost:8080/authenticate',user)
-//     .then(res => { localStorage.setItem("CurrentUser", JSON.stringify(res.data))})
-//     .catch(err => {alert("invalid")})
+
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
 
 
