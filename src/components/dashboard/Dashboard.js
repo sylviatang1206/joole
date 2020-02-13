@@ -2,12 +2,16 @@ import React, { Component } from 'react'
 import Sorting from './Sorting'
 import FanList from '../projects/FanList'
 import { connect } from 'react-redux'
+import {fetchFans} from '../../store/actions/fanActions'
 
 
 export class Dashboard extends Component {
+    componentDidMount(){
+        this.props.fetchFans();
+    }
     render() {
         //console.log(this.props);
-        const { projects } = this.props;
+        const { fans } = this.props;
 
         return (
             <div className="dashboard container">
@@ -15,8 +19,11 @@ export class Dashboard extends Component {
                     <div className="col s12 m2">
                     <Sorting />
                     </div>
-                    <div className="col s12 m10 offset-m1">
-                    <FanList projects={projects}/>
+                    <div className="col s12 m10">
+                        <span className="indigo-text text-darken-3">Mechanical > </span>
+                        <span className="grey-text text-lighten-2">HVAC Fans</span>
+        
+                        <FanList fans={fans}/>
                     </div>
                 </div>
                 
@@ -27,8 +34,8 @@ export class Dashboard extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        projects: state.project.projects
+        fans: state.fan.fans
     }
 }
 
-export default connect(mapStateToProps)(Dashboard)
+export default connect(mapStateToProps, {fetchFans})(Dashboard)

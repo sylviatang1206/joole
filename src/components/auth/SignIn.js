@@ -16,13 +16,13 @@ class SignIn extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state);
+        // console.log(this.state);
         this.props.userLogin(this.state);
     }
     
     
     render() {
-        console.log(this.props);
+        //console.log(this.props);
         return (
             <div className="container">
                 <form onSubmit={this.handleSubmit} className="white">
@@ -55,7 +55,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     return {
         token: state.auth.token,
-        
+
     }
 
 }

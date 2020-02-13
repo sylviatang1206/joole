@@ -33,7 +33,7 @@ export const userLoginAction = user => {
         axios.post('http://localhost:8080/authenticate', user)
             .then(res => {
                 console.log(res);
-                    localStorage.setItem("auth", res.data.jwt);
+                    localStorage.setItem("token", res.data.jwt);
                     localStorage.setItem("username", res.data.username);
                     localStorage.setItem("imageurl", res.data.imageurl);
                     dispatch(authSuccess(res.data.jwt, res.data.username, res.data.imageurl));

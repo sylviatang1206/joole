@@ -1,12 +1,12 @@
 import React from 'react'
 import FanSummary from './FanSummary'
 
-const FanList = ({projects}) => {
+const FanList = ({fans}) => {
     return (
         <div className="fan-list section">
-            {projects && projects.map(project =>{
+            {fans && fans.map(fan =>{
                 return(
-                    <FanSummary project={project} key={project.id} />
+                    <FanSummary fan={fan} key={fan.id} />
                 )
             })}
                 

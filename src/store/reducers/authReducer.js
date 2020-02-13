@@ -44,16 +44,6 @@ const setAuthRedirectPath = (state, action) => {
     return updateObject(state, { authRedirectPath: action.path })
 }
 
-// const authReducer = (state = initialState, action) => {
-//     switch (action.type) {
-
-//         case 'LOGIN_USER':
-//           return {...state, currentUser: action.token}
-//         default:
-//           return state;
-//       }
-
-// }
 const authReducer = ( state = initialState, action ) => {
     switch( action.type ) {
         
