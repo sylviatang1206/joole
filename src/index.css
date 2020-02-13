@@ -5,9 +5,10 @@ body {
   margin:0;
   padding:0;
   font-family: sans-serif;
-  background: url(/img/bg.jpg) no-repeat;
+  /* background: url(/img/bg.jpg) no-repeat; */
   background-size: 100%;
-  background-color:white;
+  background: rgb(126,183,236);
+  background: linear-gradient(180deg, rgba(126,183,236,1) 0%, rgba(255,255,255,1) 100%);
   min-height: 100%;
 }
 

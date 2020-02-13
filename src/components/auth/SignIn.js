@@ -1,20 +1,28 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux';
+import * as actions from '../../store/actions/authActions'
+
+import axios from 'axios';
 
 class SignIn extends Component {
     state = {
-        username: '',
-        password: ''
+        username: "",
+        password: ""
     }
     handleChange = (e) => {
         this.setState({
-            [e.target.id]:e.target.value
+            [e.target.name]:e.target.value
         })
     }
     handleSubmit = (e) => {
         e.preventDefault();
         console.log(this.state);
+        this.props.userLogin(this.state);
     }
+    
+    
     render() {
+        console.log(this.props);
         return (
             <div className="container">
                 <form onSubmit={this.handleSubmit} className="white">
@@ -23,14 +31,14 @@ class SignIn extends Component {
                     </h5>
                     <div className="input-field">
                         <label htmlFor="username">Username or Email</label>
-                        <input type="text" id="username" onChange={this.handleChange} />
+                        <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
                     </div>
                     <div className="input-field">
                         <label htmlFor="password">Password</label>
-                        <input type="password" id="password" onChange={this.handleChange} />
+                        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                     </div>
                     <div className="input-field">
-                        <button className="btn pink lighten-3 z-deptth-0">SignIn</button>
+                        <button className="btn pink lighten-3 z-deptth-0" type="submit">SignIn</button>
                     </div>
                 </form>
             </div>
@@ -38,4 +46,23 @@ class SignIn extends Component {
     }
 }
 
-export default SignIn
+const mapDispatchToProps = dispatch => {
+    return {
+    userLogin: userInfo => dispatch(actions.userLoginAction(userInfo))
+}
+}
+
+const mapStateToProps = state => {
+    return {
+        token: state.auth.token,
+        
+    }
+
+}
+// const onSubmit = user =>{
+//     axios.post('http://localhost:8080/authenticate',user)
+//     .then(res => { localStorage.setItem("CurrentUser", JSON.stringify(res.data))})
+//     .catch(err => {alert("invalid")})
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
+
+

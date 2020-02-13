@@ -4,10 +4,12 @@ import SignInLinks from './SignInLinks'
 import SignOutLinks from './SignOutLinks'
 
 
-
+const headerStyle = {
+    background: '#90c1ed',
+}
 const Navbar = () => {
     return (
-        <nav className="nav-wrapper #90caf9 blue lighten-4">
+        <nav className="nav-wrapper z-depth-0" style={headerStyle}>
             <div className="container">
                 <Link to='/' className="brand-logo left">Joole</Link>
                 <SignInLinks />
