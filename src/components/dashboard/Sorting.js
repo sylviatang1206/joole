@@ -4,22 +4,18 @@ import { Slider, Rail, Handles, Tracks, Ticks } from 'react-compound-slider'
 import { SliderRail, Handle, Track, Tick } from './Rail'
 
 const airflow = [5000,10000]
-const railStyle = {
-    position: 'relative',
-    width: '100%',
-    height: 10,
-    marginTop: 35,
-    borderRadius: 5,
-    backgroundColor: '#8B9CB6',
-  }
 
-  const sliderStyle = {
+const sliderStyle = {
     position: 'relative',
     width: '100%',
   }
 class Sorting extends Component{
     state = {
         domain: [5000,10000],
+        //airflow: {
+            // value:
+            //id:
+        // }
         values: airflow.slice(),
         update: airflow.slice(),
 
@@ -27,6 +23,7 @@ class Sorting extends Component{
 
     onChange = (values) => {
         this.setState({ 
+            
             values })
     }
     onUpdate = update => {
@@ -78,14 +75,8 @@ class Sorting extends Component{
                         <i className="tiny material-icons right">expand_more</i>
                         </div>
                         <div className="collapsible-body white">
-                            <a className="grey-text">Model year: </a>
-                            <form>
-                            <input type="text" value="2010"/>
-                            -
-                            <input type="text" value="2016"/>
-                            </form>
 
-                            <input type="text" value={update[0]} onChange={this.onChange}/>
+                            <input type="text" value={update[0]} onChange={this.onChange()}/>
                             <div>{update[0]}</div>
                             <div>{update[1]}</div>
                             <Slider mode={2} step={1} domain={domain} 

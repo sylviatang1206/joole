@@ -20,3 +20,11 @@ const projectReducer = (state = initState, action) => {
     })
 }
 export default projectReducer
+
+//a = {}
+//{...a}
+
+//a = [];
+//[...a]
+//shallow copy , deep copy
+//spread operator
