@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 const railOuterStyle = {
   position: 'absolute',
   width: '100%',
-  height: 42,
+  height: 2,
   transform: 'translate(0%, -50%)',
   borderRadius: 7,
   cursor: 'pointer',
@@ -17,7 +17,7 @@ const railOuterStyle = {
 const railInnerStyle = {
   position: 'absolute',
   width: '100%',
-  height: 14,
+  height: 2,
   transform: 'translate(0%, -50%)',
   borderRadius: 7,
   pointerEvents: 'none',
@@ -56,7 +56,7 @@ export function Handle({
           WebkitTapHighlightColor: 'rgba(0,0,0,0)',
           zIndex: 5,
           width: 28,
-          height: 42,
+          height: 20,
           cursor: 'pointer',
           // border: '1px solid white',
           backgroundColor: 'none',
@@ -73,11 +73,11 @@ export function Handle({
           position: 'absolute',
           transform: 'translate(-50%, -50%)',
           zIndex: 2,
-          width: 24,
-          height: 24,
+          width: 20,
+          height: 20,
           borderRadius: '50%',
           boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, 0.3)',
-          backgroundColor: disabled ? '#666' : '#ffc400',
+          backgroundColor: disabled ? '#666' : '#bdbdbd',
         }}
       />
     </Fragment>
@@ -155,9 +155,9 @@ export function Track({ source, target, getTrackProps, disabled }) {
       style={{
         position: 'absolute',
         transform: 'translate(0%, -50%)',
-        height: 14,
+        height: 3,
         zIndex: 1,
-        backgroundColor: disabled ? '#999' : '#b28900',
+        backgroundColor: disabled ? '#999' : '#9e9e9e',
         borderRadius: 7,
         cursor: 'pointer',
         left: `${source.percent}%`,
