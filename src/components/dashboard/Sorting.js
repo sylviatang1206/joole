@@ -9,7 +9,15 @@ import * as actions from '../../store/actions/filterActions';
 import {connect} from 'react-redux';
 
 
-
+const inputStyle = {
+    border:'solid',
+    borderColor: 'rgb(197, 192, 192)',
+    borderWidth: '0.5px',
+    width: '2.2rem',
+    height: '1rem',
+    fontSize: '0.8rem',
+    color: 'rgb(65, 62, 62)'
+}
 class Sorting extends Component {
     
     constructor(props) {
@@ -22,14 +30,14 @@ class Sorting extends Component {
         // this.AirFlowChange = this.AirFlowChange.bind(this);
     }
     handleChange = (e) => {
-        console.log(e.target)
+       // console.log(e.target)
         this.setState({
             [e.target.name]:e.target.value
         })
     }
 
     AirFlowChange = (filter) => {
-        console.log('I am airflow on change action function: ' + filter);
+       // console.log('I am airflow on change action function: ' + filter);
         this.props.Airflow(filter)
     }
 
@@ -53,7 +61,7 @@ class Sorting extends Component {
                     <div className="col s6 indigo lighten-1 white-text center">Product</div>
                     <div className="col s6 white indigo-text center">Project</div>
                 </div>
-                <ul className="collapsible" id="collapsible">
+                <ul className="collapsible">
                     <li>
                         <div className="collapsible-header grey lighten-2">
                             Product type
@@ -63,9 +71,9 @@ class Sorting extends Component {
                             <a className="grey-text">Model year: </a>
                             
                             
-                            <input id="inputbox" type="text" name="modelYearStart" onChange={this.handleChange} value={this.state.modelYearStart}/>
+                            <input style={inputStyle} type="text" name="modelYearStart" onChange={this.handleChange} value={this.state.modelYearStart}/>
                             -
-                            <input id="inputbox" type="text" name="modelYearEnd" onChange={this.handleChange} value={this.state.modelYearEnd}/>
+                            <input style={inputStyle} type="text" name="modelYearEnd" onChange={this.handleChange} value={this.state.modelYearEnd}/>
                         </div>
                     </li>
                     <li>

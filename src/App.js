@@ -16,7 +16,7 @@ export class App extends Component {
           <Navbar />
           <Switch>
             <Route exact path='/' component={Dashboard} />
-            <Route path='/project/:id' component={FanDetails} />
+            <Route path='/project' component={FanDetails} />
             <Route path='/signin' component={SignIn} />
             <Route path='/signup' component={SignUp} />
           </Switch>

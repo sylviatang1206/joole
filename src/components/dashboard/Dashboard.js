@@ -11,7 +11,20 @@ export class Dashboard extends Component {
     }
     render() {
         console.log('Dashboard', this.props);
-        const { fans } = this.props;
+        console.log(this.props.airflowFilter);
+        
+        // if(this.props.airflowFilter){
+        //     const { fans } = this.props.fans.filter(fans =>( fans.))
+        // }
+        // else{
+            const  { fans }  = this.props;
+            const airflowFilter = this.props.airflowFilter;
+            const newFan = fans.filter(function(fan){
+                return fan.airflow > airflowFilter[0] && fan.airflow < airflowFilter[1];
+            });
+            console.log(newFan);
+        
+        // }
 
         return (
             <div className="dashboard">
@@ -23,7 +36,7 @@ export class Dashboard extends Component {
                         <span className="indigo-text text-darken-3">Mechanical > </span>
                         <span className="grey-text text-lighten-2">HVAC Fans</span>
         
-                        <FanList fans={fans}/>
+                        <FanList fans={newFan}/>
                     </div>
                 </div>
                 
@@ -33,8 +46,10 @@ export class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state.filter.airflowFilter)
     return {
-        fans: state.fan.fans
+        fans: state.fan.fans,
+        airflowFilter: state.filter.airflowFilter,
     }
 }
 
