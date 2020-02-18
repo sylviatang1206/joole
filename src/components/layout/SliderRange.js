@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import M from "materialize-css";
-import { Slider, Rail, Handles, Tracks, Ticks } from 'react-compound-slider'
-import { SliderRail, Handle, Track, Tick } from './Rail'
+import { Slider, Rail, Handles, Tracks } from 'react-compound-slider'
+import { SliderRail, Handle, Track } from './Rail'
+import {connect} from 'react-redux';
+import * as actions from '../../store/actions/authActions'
+import { addAirflowFilter } from '../../store/actions/filterActions';
 
 
-
-// this.props.defaultValue÷
 const sliderStyle = {
     position: 'relative',
     width: '100%',  
@@ -13,13 +13,18 @@ const sliderStyle = {
 
 export class SliderRange extends Component {
 
-    state = {
-        id: 0,
-        domain:[0,1],
-        values: [0,1],
-        update: [0,1],
-        name: ""
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: 0,
+            domain:[0,1],
+            values: [0,1],
+            update: [0,1],
+            name: ""
+        };
 
+        this.onChange = this.onChange.bind(this)
+        
     }
 
     componentDidMount(){
@@ -35,8 +40,14 @@ export class SliderRange extends Component {
         
     }
 
-    onChange = (values) => {
-        this.setState({ values })
+    onChange = (value1, value2) => {
+        // this.setState({ values })
+        this.props.onChange([value1, value2])
+        //this.props.onChange()
+        // this.setState({
+        //     update:[value1, value2]
+        // })
+        
     }
     onUpdate = (update,id) => {
         
@@ -63,7 +74,7 @@ export class SliderRange extends Component {
 
             rootStyle={sliderStyle}
             onUpdate={this.onUpdate}
-            onChange={this.onChange}
+            onChange={this.props.onChange}
             values={values}
         >
             <Rail>
@@ -105,4 +116,19 @@ export class SliderRange extends Component {
     }
 }
 
-export default SliderRange
+const mapDispatchToProps = dispatch => {
+    return {
+        // loggedin: () => dispatch(actions.loggedin())
+}
+}
+
+const mapStateToProps = state => {
+    //console.log(state)
+    return {
+        //token: state.auth.token,
+        //imageurl: state.auth.imageurl
+    }
+
+}
+export default connect(mapStateToProps, mapDispatchToProps)(SliderRange)
+

@@ -9,6 +9,7 @@ const instance = axios.create({
 })
 
 export const fanSuccess = ( fans ) => {
+    console.log(fans)
     return {
         type: actionTypes.FETCH_FANS_SUCCESS,
         fans: fans

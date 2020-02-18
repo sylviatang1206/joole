@@ -10,14 +10,14 @@ export class Dashboard extends Component {
         this.props.fetchFans();
     }
     render() {
-        //console.log(this.props);
+        console.log('Dashboard', this.props);
         const { fans } = this.props;
 
         return (
             <div className="dashboard">
                 <div className="row">
                     <div className="col s12 m2">
-                    <Sorting fans={fans}/>
+                    <Sorting />
                     </div>
                     <div className="col s12 m10">
                         <span className="indigo-text text-darken-3">Mechanical > </span>

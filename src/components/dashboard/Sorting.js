@@ -2,9 +2,36 @@ import React, { Component } from 'react'
 import M from "materialize-css";
 import {SliderRange} from '../layout/SliderRange'
 import './Sorting.css'
+// import Popup from 'reactjs-popup'
+import { addAirflowFilter } from '../../store/actions/filterActions'
+import FilterPopup from './FilterPopup'
+import * as actions from '../../store/actions/filterActions';
+import {connect} from 'react-redux';
+
 
 
 class Sorting extends Component {
+    
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            modelYearStart: 2016,
+            modelYearEnd: 2020
+        }
+        // this.AirFlowChange = this.AirFlowChange.bind(this);
+    }
+    handleChange = (e) => {
+        console.log(e.target)
+        this.setState({
+            [e.target.name]:e.target.value
+        })
+    }
+
+    AirFlowChange = (filter) => {
+        console.log('I am airflow on change action function: ' + filter);
+        this.props.Airflow(filter)
+    }
 
     componentDidMount() {
         document.addEventListener('DOMContentLoaded', function () {
@@ -13,12 +40,13 @@ class Sorting extends Component {
         });
     }
     render() {
+        console.log(this.props);
         // const { domain, values, update }= this.state;
         return (
             <div className="">
                 <div className={'row'}>
                     <a className="col grey-text text-darken-3">Search: </a>
-                    <a className="col grey white-text"> Save </a>
+                    <FilterPopup {...this.state}/>
                     <a className="col offset-m1 grey white-text"> Clear </a>
                 </div>
                 <div className="row">
@@ -35,9 +63,9 @@ class Sorting extends Component {
                             <a className="grey-text">Model year: </a>
                             
                             
-                            <input id="inputbox" type="text" value="2016"/>
+                            <input id="inputbox" type="text" name="modelYearStart" onChange={this.handleChange} value={this.state.modelYearStart}/>
                             -
-                            <input id="inputbox" type="text" value="2020"/>
+                            <input id="inputbox" type="text" name="modelYearEnd" onChange={this.handleChange} value={this.state.modelYearEnd}/>
                         </div>
                     </li>
                     <li>
@@ -46,22 +74,38 @@ class Sorting extends Component {
                         <i className="tiny material-icons right">expand_more</i>
                         </div>
                         <div className="collapsible-body white">
-                        
-                        <SliderRange defaultValue= { [100, 500] } name={"airflow"}></SliderRange>
-                        <SliderRange defaultValue= { [100, 1000]  } name={"maxpower"} ></SliderRange>
-                        
 
-
+                        {/* <button onClick = {AirFlowChange}></button> */}
+                        <SliderRange defaultValue= { [5000, 10000] } name={"airflow"} onChange={this.AirFlowChange}></SliderRange>
+                        <SliderRange defaultValue= { [100, 1000]  } name={"maxpower"}></SliderRange>
+                    
                             
                         </div>
                         
-                        
                     </li>
                 </ul>
+
 
             </div>
         )
     }
 }
+const mapDispatchToProps = dispatch => {
+    return {
+    // userLogin: userInfo => dispatch(actions.userLoginAction(userInfo)),
+    // loggedin: () => dispatch(actions.loggedin())
+    Airflow: filter => dispatch(actions.addAirflowFilter(filter))
 
-export default Sorting
+}
+}
+
+const mapStateToProps = state => {
+    return {
+        fans: state.fan.fans,
+    }
+
+}
+
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Sorting)
