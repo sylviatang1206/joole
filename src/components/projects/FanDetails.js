@@ -3,7 +3,10 @@ import { connect } from 'react-redux'
 import ScrollableAnchor, { configureAnchors, goToTop } from 'react-scrollable-anchor'
 import { NavLink } from 'react-router-dom'
 
-
+const fixStyle = {
+    overflow: 'scroll',
+    height:'500px'
+}
 
 export class FanDetails extends Component {
     componentWillMount() {
@@ -32,19 +35,21 @@ export class FanDetails extends Component {
         <a href='#section1' className="grey white-text" width="50em"> Product Summary  |</a>
         <a href='#section2' className="grey white-text"> Product Details  |</a>
         <a href='#section3' className="grey white-text"> Product Documentation   |</a>
+        <div style={fixStyle}>
         <ScrollableAnchor id={'section1'}>
           <div> 
-          <img src="https://i.postimg.cc/NfRbmm2H/Screen-Shot-2020-02-17-at-11-54-55-PM.png"/>
+          <img src="https://i.postimg.cc/NfRbmm2H/Screen-Shot-2020-02-17-at-11-54-55-PM.png" width="1200px"/>
           </div>
         </ScrollableAnchor>
         <ScrollableAnchor id={'section2'}>
           <div> 
-              <img src="https://i.postimg.cc/NFc2c9s3/Screen-Shot-2020-02-17-at-11-55-04-PM.png" /> </div>
+              <img src="https://i.postimg.cc/NFc2c9s3/Screen-Shot-2020-02-17-at-11-55-04-PM.png"  width="1200px"/> </div>
         </ScrollableAnchor>
         <ScrollableAnchor id={'section3'}>
           <div> 
-              <img src="https://i.postimg.cc/zXD3F1VF/Screen-Shot-2020-02-17-at-11-55-14-PM.png" /> </div>
+              <img src="https://i.postimg.cc/zXD3F1VF/Screen-Shot-2020-02-17-at-11-55-14-PM.png"  width="1200px"/> </div>
         </ScrollableAnchor>
+        </div>
       </div>
 
                 </div>

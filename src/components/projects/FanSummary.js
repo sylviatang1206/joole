@@ -7,10 +7,6 @@ const mystyle ={
 };
 
 
-//const fan = props.fan
-    //console.log({fan})
-    
-// const FanSummary = (props) => {
 class FanSummary extends Component{
     constructor(props){
         super(props)
